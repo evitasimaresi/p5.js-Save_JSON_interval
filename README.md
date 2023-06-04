@@ -1,7 +1,16 @@
-# p5.js Initial files and ml5.js library
- Contains the intial files for p5.js and the ml5.js Machine Learning library projects
+# Receiving data from arduino and Save them in a JSON file
+ 
+I receive data from the Arduino serial port on the serial_comm.js
+I process the data separating the string and then export them in a JSOn file.
 
- Source files at [Getting Started\Quickstart](https://learn.ml5js.org/#/)
 
- **clone this repository**
+ _I use the programm p5.serialcontrol_
+
+ ___
+
+ The files:
+ *  split.js
+ * split2.js
+
+ are not needed anymore, and they will be removed soon.
 

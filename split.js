@@ -2,7 +2,7 @@
 Example that takes a string and split it to extract the data
 need it for analyzing the light and rotation values
 
--Not included in the index.html
+-Not included on final version
 */
 
 let names = "1st:15:30";

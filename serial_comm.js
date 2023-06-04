@@ -4,18 +4,6 @@
 let serial; // variable for the serial object
 let latestData = "waiting for data"; // variable to hold the data
 
-//1st Servo--------------
-let light_1 = [];
-let rotation_1 = [];
-let index_1 = 0; //counter
-
-//2nd Servo--------------
-let light_2 = [];
-let rotation_2 = [];
-let index_2 = 0; //counter
-
-let splitString;
-
 function setup() {
   createCanvas(400, 400);
   // serial constructor
@@ -36,6 +24,7 @@ function setup() {
   serial.on("open", gotOpen);
   // what to do when the port closes
   serial.on("close", gotClose);
+  initiateIntervals(); //initiate the intervalls for date and saving
 }
 
 function serverConnected() {
@@ -75,46 +64,12 @@ function gotData() {
   splitData();
 }
 
-//seperate data according to number of servo and store them in seperate arrays
-function splitData() {
-  background(255, 255, 255);
-  splitString = split(latestData, ":");
-  if (splitString[0] == "1st") {
-    light_1[index_1] = splitString[1];
-    rotation_1[index_1] = splitString[2];
-
-    //console.log(light_1[index_1]);
-    //console.log(rotation_1[index_1]);
-    rect(width / 2, height / 2, light_1[index_1], rotation_1[index_1]);
-
-    index_1++;
-  } else if (splitString[0] == "2nd") {
-    light_2[index_2] = splitString[1];
-    rotation_2[index_2] = splitString[2];
-    index_2++;
-  } else {
-    console.error("Label '" + splitString[0] + "' doesn't much");
-  }
-}
-
 function draw() {
-  //background(255, 255, 255);
-  text(latestData, 10, 10); // print the data to the sketch
+  background(255, 255, 255);
+  text(latestData, random(10,390), random(10,390)); // print the data to the sketch
 
   fill(0);
   //ellipse(width / 2, height / 2, 100, 100);
   rectMode(CENTER);
   //rect(width / 2, height / 2, 100, 100);
-}
-
-function keyPressed() {
-  if (keyCode == S) {
-    saveDatatoFile();
-  }
-}
-
-//when its called the data array is been saved in the JSON file
-function saveDatatoFile() {
-  saveJSON(light_1, "saved");
-  console.log('Data saved to file.');
 }

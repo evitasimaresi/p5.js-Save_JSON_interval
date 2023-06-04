@@ -1,47 +1,47 @@
 //Storing minutes and seconds in data array and save them in a Json file, the name of the file is the date and time
 //And after saving the array is cleared
-let mydate = "current date";
+let DateToday = "current date";
 let data = [];
-let timeTrack;
+let dataTrack;
 
-function setup() {
-  createCanvas(400, 400);
-  setInterval(timer, 60000); //to save the file every x seconds, 60000=60seconds
-  setInterval(timetracking, 1000); // to update the array with current time every second, 1000=1second
-}
+let splitString;
 
-function draw() {
-  background(220);
+function initiateIntervals() {
+  setInterval(timer, 10000); //to save the file every x milliseconds, 60000=60seconds
+  // setInterval(splitData(), 2000); // to update the array with current time every second, 1000=1second
 }
 
 //its beeing used for the JSON name, so it can be a unique every 1 second
 function currentdate() {
-  let currentdate = month() + "" + day() + "_" + hour() + "" + minute() + "" + second();//here the name is formed
+  let currentdate = year()+ "" + month() + "" + day() + "_" + hour() + "" + minute() + "" + second();//here the name is formed
   return currentdate;
 }
 
-//update the arrray with new minutes and seconds
-function timetracking() {
-  let timeTrack = {
-    minutes: minute(),
-    seconds: second()
+//seperate data according to number of servo and store them in array
+function splitData() {
+  splitString = split(latestData, ":");
+  let dataTrack ={
+      group: splitString[0],
+      lightValue: splitString[1],
+      rotationValue: splitString[2],
+      time: hour()+":" +minute()+":" +second() 
   };
-  data.push(timeTrack);
-  return timeTrack;
+  data.push(dataTrack);
+  return dataTrack;
 }
 
 //when its called the procedure of saving is trigered
 function timer() {
   console.log("saving...");
-  mydate = currentdate();
-  console.log(mydate);
+  DateToday = currentdate();
+  console.log(DateToday);
   saveDatatoFile();
   cleararray();
 }
 
 //when its called the data array is been saved in the JSON file
 function saveDatatoFile() {
-  saveJSON(data, mydate);
+  saveJSON(data, DateToday);
   console.log('Data saved to file.');
 }
 
