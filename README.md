@@ -3,14 +3,13 @@
 I receive data from the Arduino serial port on the serial_comm.js
 I process the data separating the string and then export them in a JSOn file.
 
+**Update:** The sketch.js file create the vizualised graphics, for real-time representation of the data
+
 
  _I use the programm p5.serialcontrol_
 
  ___
 
- The files:
+ Removed files:
  *  split.js
  * split2.js
-
- are not needed anymore, and they will be removed soon.
-

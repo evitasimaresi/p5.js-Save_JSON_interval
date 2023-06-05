@@ -5,7 +5,7 @@ let serial; // variable for the serial object
 let latestData = "waiting for data"; // variable to hold the data
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
   // serial constructor
   serial = new p5.SerialPort();
   // get a list of all connected serial devices
@@ -59,17 +59,7 @@ function gotData() {
   let currentString = serial.readLine(); // store the data in a variable
   trim(currentString); // get rid of whitespace
   if (!currentString) return; // if there's nothing in there, ignore it
-  console.log(currentString); // print it out
+  //console.log(currentString); // print it out
   latestData = currentString; // save it to the global variable
   splitData();
-}
-
-function draw() {
-  background(255, 255, 255);
-  text(latestData, random(10,390), random(10,390)); // print the data to the sketch
-
-  fill(0);
-  //ellipse(width / 2, height / 2, 100, 100);
-  rectMode(CENTER);
-  //rect(width / 2, height / 2, 100, 100);
 }

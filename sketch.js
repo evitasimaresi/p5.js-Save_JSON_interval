@@ -1,56 +1,39 @@
-//Storing minutes and seconds in data array and save them in a Json file, the name of the file is the date and time
-//And after saving the array is cleared
-let DateToday = "current date";
-let data = [];
-let dataTrack;
-
-let splitString;
-
-function initiateIntervals() {
-  setInterval(timer, 10000); //to save the file every x milliseconds, 60000=60seconds
-  // setInterval(splitData(), 2000); // to update the array with current time every second, 1000=1second
+function draw() {
+    // background(255, 255, 255);
+    //ellipse(width / 2, height / 2, 100, 100);
 }
 
-//its beeing used for the JSON name, so it can be a unique every 1 second
-function currentdate() {
-  let currentdate = year()+ "" + month() + "" + day() + "_" + hour() + "" + minute() + "" + second();//here the name is formed
-  return currentdate;
+function drawing(dataTrack) {
+    if (second()% 5 == 0){
+        background(255);
+    }
+    //maketext(dataTrack.lightValue)
+    if (dataTrack.group == "1st"){
+    makerectangle(width /4, height / 4,dataTrack.lightValue, dataTrack.rotationValue);
+    let c = color (255,0,0);
+    makeLine(width /4, height / 4 , dataTrack.lightValue, dataTrack.rotationValue, c);
+}else if (dataTrack.group == "2nd") {
+    makerectangle(width /2, height / 2,dataTrack.lightValue, dataTrack.rotationValue);
+    let c = color (0,0,255);
+    makeLine(width /2, height / 2 ,dataTrack.lightValue, dataTrack.rotationValue, c);
+}
 }
 
-//seperate data according to number of servo and store them in array
-function splitData() {
-  splitString = split(latestData, ":");
-  let dataTrack ={
-      group: splitString[0],
-      lightValue: splitString[1],
-      rotationValue: splitString[2],
-      time: hour()+":" +minute()+":" +second() 
-  };
-  data.push(dataTrack);
-  return dataTrack;
+
+function makeLine(x,y,a,b,c){
+    strokeWeight(3);
+    stroke (c);
+    line(x, y, x, a)
+    line(y, x, b, x)
 }
 
-//when its called the procedure of saving is trigered
-function timer() {
-  console.log("saving...");
-  DateToday = currentdate();
-  console.log(DateToday);
-  saveDatatoFile();
-  cleararray();
+function makerectangle(x,y,a,b){
+    noStroke();
+    fill(0);
+    rectMode(CENTER);
+    rect(x, y, a, b);
 }
 
-//when its called the data array is been saved in the JSON file
-function saveDatatoFile() {
-  saveJSON(data, DateToday);
-  console.log('Data saved to file.');
-}
-
-//clear the array when the export finish
-function cleararray(){
-  data.length = 0; 
-  if (data.length==0){
-    console.log("Array cleared");
-  }else{
-    console.error("Array failled to clear");
-  }
+function maketext(a){
+    text(a, width/8, height/8); // print the data to the sketch
 }
