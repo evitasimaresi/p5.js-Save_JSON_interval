@@ -6,6 +6,7 @@ let latestData = "waiting for data"; // variable to hold the data
 
 function setup() {
   createCanvas(800, 800);
+  background(255, 255, 255);
   // serial constructor
   serial = new p5.SerialPort();
   // get a list of all connected serial devices
@@ -59,7 +60,7 @@ function gotData() {
   let currentString = serial.readLine(); // store the data in a variable
   trim(currentString); // get rid of whitespace
   if (!currentString) return; // if there's nothing in there, ignore it
-  //console.log(currentString); // print it out
+  // console.log(currentString); // print it out
   latestData = currentString; // save it to the global variable
   splitData();
 }
