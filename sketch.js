@@ -57,3 +57,9 @@ function makereellipse(x, y, a, b, c) {
 function maketext(a) {
     text(a, width / 8, height / 8); // print the data to the sketch
 }
+
+function saveimage(){
+    DateToday = currentdate();
+    save(DateToday +".jpg");
+    console.log("SavingImage")
+}
