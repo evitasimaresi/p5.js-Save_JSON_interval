@@ -9,7 +9,7 @@ let splitString;
 function initiateIntervals() {
   setInterval(timer, 60000); //to save the file every x milliseconds, 60000=60seconds
   // setInterval(splitData(), 2000); // to update the array with current time every second, 1000=1second
-  setInterval(saveimage, 500); //to save the file every x milliseconds, 0.5 second
+  setInterval(saveimage, 500); //to save the file every x milliseconds, 0.5seconds
 }
 
 //its beeing used for the JSON name, so it can be a unique every 1 second
